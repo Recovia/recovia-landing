@@ -1,3 +1,7 @@
+"use client";
+
+import { useScrollReveal } from "@/lib/useScrollReveal";
+
 const FORMATS = [
   {
     name: ".eml",
@@ -57,8 +61,9 @@ const FORMATS = [
 ];
 
 export default function Integrations() {
+  const ref = useScrollReveal(".format-card");
   return (
-    <section id="integrations" className="band">
+    <section id="integrations" className="band" ref={ref}>
       <div className="wrap">
         <div className="section-head" style={{ flexDirection: "column", alignItems: "flex-start", gap: 8 }}>
           <span className="jb hero-eyebrow" style={{ marginBottom: 0 }}>

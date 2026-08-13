@@ -1,3 +1,7 @@
+"use client";
+
+import { useScrollReveal } from "@/lib/useScrollReveal";
+
 const STEPS = [
   {
     num: "1",
@@ -17,8 +21,9 @@ const STEPS = [
 ];
 
 export default function HowItWorks() {
+  const ref = useScrollReveal(".step");
   return (
-    <section id="how" className="band">
+    <section id="how" className="band" ref={ref}>
       <div className="wrap">
         <div style={{ marginBottom: 28 }}>
           <span className="jb hero-eyebrow">WORKFLOW</span>

@@ -1,4 +1,7 @@
+"use client";
+
 import { BUY_URL } from "@/lib/config";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 const PERKS = [
   "All import, threading & export features",
@@ -8,8 +11,9 @@ const PERKS = [
 ];
 
 export default function Pricing() {
+  const ref = useScrollReveal(".pricing-copy, .price-card");
   return (
-    <section id="pricing">
+    <section id="pricing" ref={ref}>
       <div className="wrap pricing-grid">
         <div className="pricing-copy">
           <span className="jb hero-eyebrow" style={{ marginBottom: 14 }}>

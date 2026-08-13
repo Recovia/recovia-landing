@@ -1,3 +1,7 @@
+"use client";
+
+import { useScrollReveal } from "@/lib/useScrollReveal";
+
 const QUOTES = [
   {
     title: "Cut a day of exhibit prep to an hour",
@@ -30,8 +34,9 @@ const QUOTES = [
 ];
 
 export default function Testimonials() {
+  const ref = useScrollReveal(".quote");
   return (
-    <section id="testimonials">
+    <section id="testimonials" ref={ref}>
       <div className="wrap">
         <div style={{ marginBottom: 26 }}>
           <h2>Here&apos;s what our users say</h2>

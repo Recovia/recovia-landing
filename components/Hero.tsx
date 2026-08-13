@@ -1,17 +1,77 @@
 "use client";
 
+import { useRef } from "react";
 import { FILES, NAMES, RELEASE_BASE } from "@/lib/config";
 import { useDetectedOs } from "@/lib/useDetectedOs";
+import { gsap, useGSAP, SplitText } from "@/lib/gsap";
 
 export default function Hero() {
   const os = useDetectedOs();
   const downloadHref = os ? `${RELEASE_BASE}/${FILES[os]}` : "#downloads";
   const downloadLabel = os ? `Download for ${NAMES[os]}` : "Download for your OS";
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          reduceMotion: "(prefers-reduced-motion: reduce)",
+          motionOk: "(prefers-reduced-motion: no-preference)",
+        },
+        (context) => {
+          const { reduceMotion } = context.conditions as { reduceMotion: boolean };
+
+          const split = SplitText.create("h1", { type: "words" });
+
+          const tl = gsap.timeline({
+            defaults: { duration: reduceMotion ? 0 : 0.7, ease: "power2.out" },
+          });
+
+          tl.from(".hero-eyebrow", { autoAlpha: 0, y: -12 })
+            .from(
+              split.words,
+              { autoAlpha: 0, y: 30, stagger: reduceMotion ? 0 : 0.03 },
+              "-=0.4",
+            )
+            .from(
+              ".exhibit-badge",
+              {
+                autoAlpha: 0,
+                scale: 1.6,
+                rotation: -45,
+                duration: reduceMotion ? 0 : 0.9,
+                ease: "back.out(2)",
+              },
+              "-=0.5",
+            )
+            .from(".hero-lead", { autoAlpha: 0, y: 16 }, "-=0.3")
+            .from(
+              ".hero-cta a",
+              { autoAlpha: 0, y: 12, stagger: reduceMotion ? 0 : 0.1 },
+              "-=0.3",
+            )
+            .from(
+              ".fact-strip .fact",
+              { autoAlpha: 0, y: 10, stagger: reduceMotion ? 0 : 0.08 },
+              "-=0.2",
+            )
+            .from(".case-panel", { autoAlpha: 0, y: 24 }, "-=0.2");
+
+          return () => split.revert();
+        },
+      );
+
+      return () => mm.revert();
+    },
+    { scope: heroRef },
+  );
 
   return (
     <>
       <a id="top" />
-      <div className="hero-wrap">
+      <div className="hero-wrap" ref={heroRef}>
         <div className="wrap hero-top">
           <span className="hero-eyebrow">★★★★★ LOCAL-FIRST · YOUR EMAIL NEVER LEAVES YOUR MACHINE</span>
           <h1>Turn email exports into</h1>

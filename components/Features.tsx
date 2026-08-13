@@ -1,3 +1,7 @@
+"use client";
+
+import { useScrollReveal } from "@/lib/useScrollReveal";
+
 const FEATURES = [
   {
     kicker: "01 · THREADING",
@@ -33,8 +37,9 @@ const FEATURES = [
 ];
 
 export default function Features() {
+  const ref = useScrollReveal(".feature-card");
   return (
-    <section id="features">
+    <section id="features" ref={ref}>
       <div className="wrap">
         <div className="section-head" style={{ flexDirection: "column", alignItems: "flex-start", gap: 8 }}>
           <span className="jb hero-eyebrow" style={{ marginBottom: 0 }}>

@@ -1,6 +1,12 @@
+"use client";
+
+import { useScrollReveal } from "@/lib/useScrollReveal";
+
 export default function Cta() {
+  const ref = useScrollReveal<HTMLDivElement>(".cta-band .inner > *");
+
   return (
-    <div className="cta-band">
+    <div className="cta-band" ref={ref}>
       <div className="wrap inner">
         <div>
           <h3>The best way to build your exhibit bundle.</h3>

@@ -2,6 +2,7 @@
 
 import { FILES, NAMES, OsKey, RELEASE_BASE, RELEASE_DATE, REPO_URL, VERSION } from "@/lib/config";
 import { useDetectedOs } from "@/lib/useDetectedOs";
+import { useScrollReveal } from "@/lib/useScrollReveal";
 
 const PLATFORMS: {
   os: OsKey;
@@ -21,9 +22,10 @@ const PLATFORMS: {
 
 export default function Downloads() {
   const detected = useDetectedOs();
+  const ref = useScrollReveal(".dl-card");
 
   return (
-    <section id="downloads">
+    <section id="downloads" ref={ref}>
       <div className="wrap">
         <div style={{ marginBottom: 8 }}>
           <span className="jb hero-eyebrow">DOWNLOAD</span>
