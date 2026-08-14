@@ -9,7 +9,7 @@ const ThemeContext = createContext<{ theme: Theme; toggleTheme: () => void } | u
 );
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
     const current = document.documentElement.getAttribute("data-theme");

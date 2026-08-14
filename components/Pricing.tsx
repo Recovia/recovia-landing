@@ -11,43 +11,38 @@ const PERKS = [
 ];
 
 export default function Pricing() {
-  const ref = useScrollReveal(".pricing-copy, .price-card");
+  const ref = useScrollReveal(".price");
   return (
     <section id="pricing" ref={ref}>
-      <div className="wrap pricing-grid">
-        <div className="pricing-copy">
-          <span className="jb hero-eyebrow" style={{ marginBottom: 14 }}>
-            PRICING
-          </span>
-          <h2 style={{ marginBottom: 8 }}>Simple, one-time pricing</h2>
+      <div className="wrap">
+        <div className="section-head center">
+          <span className="section-eyebrow">Pricing</span>
+          <h2>
+            Simple, <span style={{ color: "var(--green)" }}>one-time</span> pricing
+          </h2>
           <p>Buy once, own it. Free trial with no account required.</p>
-          <div className="jb pricing-facts">
-            SENT ON CHECK &nbsp;license key, version, platform
-            <br />
-            NEVER SENT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;message content, headers, file names, counts
-          </div>
         </div>
-        <div className="price-card">
-          <div className="price-badge">
-            <div>
-              <div className="bs amt">$49</div>
-              <div className="jb unit">ONCE</div>
-            </div>
+        <div className="price">
+          <div className="amt">
+            $49 <small>/ one-time license</small>
           </div>
-          <div className="jb kicker">PERPETUAL LICENSE</div>
-          <p className="sub">One license, unlimited projects, on all your computers.</p>
+          <p style={{ color: "var(--muted)", margin: "8px 0 0" }}>
+            One license, unlimited projects, on all your computers.
+          </p>
           <ul>
             {PERKS.map((perk) => (
               <li key={perk}>
-                <span className="jb check">✓</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.2l-3.5-3.5L4 14.2 9 19l11-11-1.5-1.5z" />
+                </svg>
                 {perk}
               </li>
             ))}
           </ul>
-          <a className="btn-ink" href={BUY_URL}>
+          <a className="btn-solid" href={BUY_URL} style={{ width: "100%" }}>
             Buy a license
           </a>
-          <p style={{ fontSize: 12.5, color: "var(--muted)", margin: "12px 0 0" }}>
+          <p style={{ fontSize: 13, color: "var(--muted)", margin: "14px 0 0" }}>
             or <a href="#downloads">download the free trial</a> first
           </p>
         </div>

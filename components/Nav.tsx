@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { VERSION } from "@/lib/config";
 import { useTheme } from "@/lib/theme";
 
@@ -11,8 +12,8 @@ export default function Nav() {
     <header className="nav">
       <div className="wrap nav-inner">
         <Link className="brand" href="#top">
-          <span className="sticker-dot" aria-hidden="true" />
-          <span className="bs brand-name">Correspondence</span>
+          <Image src="/logo.png" alt="Recovia" width={28} height={28} className="brand-mark" />
+          <span className="brand-name">Recovia</span>
         </Link>
         <nav className="nav-links">
           <Link className="navlink" href="#features">
@@ -34,7 +35,7 @@ export default function Nav() {
         <button type="button" className="theme-toggle" onClick={toggleTheme}>
           {theme === "dark" ? "LIGHT MODE" : "DARK MODE"}
         </button>
-        <Link className="bs nav-download" href="#downloads">
+        <Link className="btn-solid" href="#downloads">
           Download {VERSION}
         </Link>
       </div>

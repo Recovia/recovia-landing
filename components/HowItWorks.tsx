@@ -25,20 +25,16 @@ export default function HowItWorks() {
   return (
     <section id="how" className="band" ref={ref}>
       <div className="wrap">
-        <div style={{ marginBottom: 28 }}>
-          <span className="jb hero-eyebrow">WORKFLOW</span>
+        <div className="section-head center">
+          <span className="section-eyebrow">Workflow</span>
           <h2>Three steps, zero terminal</h2>
-          <p style={{ margin: "8px 0 0", fontSize: 15, color: "var(--muted)" }}>
-            Drag in your exports, tag what matters, export the bundle.
-          </p>
+          <p>Drag in your exports, tag what matters, export the bundle.</p>
         </div>
         <div className="steps-grid">
           {STEPS.map((s) => (
             <div className="step" key={s.num}>
-              <div className="step-head">
-                <span className="bs step-num">{s.num}</span>
-                <h4>{s.title}</h4>
-              </div>
+              <div className="step-num">{s.num}</div>
+              <h4>{s.title}</h4>
               <p>{s.desc}</p>
             </div>
           ))}

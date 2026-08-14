@@ -80,8 +80,10 @@ export default function Faq() {
   return (
     <section id="faq" className="band" ref={containerRef}>
       <div className="wrap">
-        <h2 style={{ marginBottom: 20 }}>Frequently asked</h2>
-        <div className="faq" style={{ maxWidth: 840 }}>
+        <div className="section-head center">
+          <h2>Frequently asked</h2>
+        </div>
+        <div className="faq" style={{ maxWidth: 840, margin: "0 auto" }}>
           {FAQS.map((item, i) => {
             const isOpen = openIndex === i;
             const num = String(i + 1).padStart(2, "0");
@@ -98,9 +100,11 @@ export default function Faq() {
                   aria-controls={panelId}
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                 >
-                  <span className="jb num">{num}</span>
-                  <span className="bs qt">{item.q}</span>
-                  <span className="jb faq-icon">{isOpen ? "–" : "+"}</span>
+                  <span className="jb" style={{ fontSize: 13, color: "var(--muted-2)" }}>
+                    {num}
+                  </span>
+                  <span className="qt">{item.q}</span>
+                  <span className="faq-icon">{isOpen ? "–" : "+"}</span>
                 </button>
                 <div
                   id={panelId}

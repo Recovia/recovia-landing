@@ -38,13 +38,15 @@ export default function Testimonials() {
   return (
     <section id="testimonials" ref={ref}>
       <div className="wrap">
-        <div style={{ marginBottom: 26 }}>
-          <h2>Here&apos;s what our users say</h2>
-          <p style={{ margin: "10px 0 0", fontSize: 15, color: "var(--muted)" }}>
+        <div className="section-head">
+          <h2>
+            Here&apos;s what our <span style={{ color: "var(--green)" }}>users</span> say
+          </h2>
+          <p style={{ marginTop: 10 }}>
             Illustrative testimonials, replace with your own once you collect them.
           </p>
           <div style={{ marginTop: 16 }}>
-            <a className="btn-out" href="#downloads">
+            <a className="btn-outline" href="#downloads">
               Read user stories
             </a>
           </div>
@@ -52,10 +54,14 @@ export default function Testimonials() {
         <div className="quotes-grid">
           {QUOTES.map((q) => (
             <div className="quote" key={q.name}>
-              <h4 style={{ fontSize: 21, marginBottom: 10 }}>{q.title}</h4>
+              <h4>{q.title}</h4>
               <p>{q.quote}</p>
-              <div className="jb who">
-                {q.name.toUpperCase()} · {q.role.toUpperCase()}
+              <div className="who">
+                <span className="av" />
+                <div>
+                  <div className="n">{q.name}</div>
+                  <div className="r">{q.role}</div>
+                </div>
               </div>
             </div>
           ))}

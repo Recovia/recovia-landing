@@ -27,13 +27,13 @@ export default function Downloads() {
   return (
     <section id="downloads" ref={ref}>
       <div className="wrap">
-        <div style={{ marginBottom: 8 }}>
-          <span className="jb hero-eyebrow">DOWNLOAD</span>
+        <div className="section-head center">
+          <span className="section-eyebrow">Download</span>
           <h2>Get the app for your platform</h2>
         </div>
-        <p className="jb downloads-note">
-          VERSION {VERSION} · RELEASED {RELEASE_DATE} ·{" "}
-          {detected ? `WE THINK YOU'RE ON ${NAMES[detected].toUpperCase()}` : "SELECT YOUR PLATFORM"}
+        <p className="jb downloads-note" style={{ textAlign: "center" }}>
+          Version {VERSION} · released {RELEASE_DATE} ·{" "}
+          {detected ? `we think you're on ${NAMES[detected]}` : "select your platform"}
         </p>
         <div className="dl-grid">
           {PLATFORMS.map((p) => {
@@ -48,7 +48,7 @@ export default function Downloads() {
                   {FILES[p.os]}
                 </div>
                 <a
-                  className={isDetected ? "btn-stamp" : "btn-out"}
+                  className={isDetected ? "btn-solid" : "btn-outline"}
                   href={`${RELEASE_BASE}/${FILES[p.os]}`}
                 >
                   {p.buttonLabel}

@@ -29,35 +29,75 @@ export default function Hero() {
             defaults: { duration: reduceMotion ? 0 : 0.7, ease: "power2.out" },
           });
 
+          gsap.set(".mock-bar", { scaleX: 0, transformOrigin: "left center" });
+          gsap.set(".mock-ref, .mock-row .mock-tag", { scale: 0.4, autoAlpha: 0 });
+          gsap.set(".mock-float", { autoAlpha: 0, y: 10 });
+          gsap.set(".mock-float .drawn", { drawSVG: reduceMotion ? "0% 100%" : "0% 0%" });
+
           tl.from(".hero-eyebrow", { autoAlpha: 0, y: -12 })
             .from(
               split.words,
-              { autoAlpha: 0, y: 30, stagger: reduceMotion ? 0 : 0.03 },
+              { autoAlpha: 0, y: 24, stagger: reduceMotion ? 0 : 0.025 },
               "-=0.4",
-            )
-            .from(
-              ".exhibit-badge",
-              {
-                autoAlpha: 0,
-                scale: 1.6,
-                rotation: -45,
-                duration: reduceMotion ? 0 : 0.9,
-                ease: "back.out(2)",
-              },
-              "-=0.5",
             )
             .from(".hero-lead", { autoAlpha: 0, y: 16 }, "-=0.3")
             .from(
-              ".hero-cta a",
+              ".hero-cta > *",
               { autoAlpha: 0, y: 12, stagger: reduceMotion ? 0 : 0.1 },
               "-=0.3",
             )
-            .from(
-              ".fact-strip .fact",
-              { autoAlpha: 0, y: 10, stagger: reduceMotion ? 0 : 0.08 },
+            .from(".mock", { autoAlpha: 0, y: 24, scale: 0.98 }, "-=0.4")
+            .to(
+              { val: 0 },
+              {
+                val: 126,
+                duration: reduceMotion ? 0 : 1,
+                ease: "power1.out",
+                onUpdate: function () {
+                  const el = document.querySelector(".count-exhibits");
+                  if (el) el.textContent = Math.round(this.targets()[0].val).toString();
+                },
+              },
+              "-=0.3",
+            )
+            .to(
+              { val: 0 },
+              {
+                val: 1284,
+                duration: reduceMotion ? 0 : 1,
+                ease: "power1.out",
+                onUpdate: function () {
+                  const el = document.querySelector(".count-messages");
+                  if (el) el.textContent = Math.round(this.targets()[0].val).toLocaleString();
+                },
+              },
+              "<",
+            )
+            .to(
+              ".mock-ref, .mock-row .mock-tag",
+              {
+                scale: 1,
+                autoAlpha: 1,
+                ease: "back.out(2.5)",
+                stagger: reduceMotion ? 0 : 0.08,
+              },
+              "-=0.5",
+            )
+            .to(
+              ".mock-bar",
+              { scaleX: 1, duration: reduceMotion ? 0 : 0.6, stagger: reduceMotion ? 0 : 0.08 },
+              "<",
+            )
+            .to(
+              ".mock-float",
+              { autoAlpha: 1, y: 0, stagger: reduceMotion ? 0 : 0.15 },
               "-=0.2",
             )
-            .from(".case-panel", { autoAlpha: 0, y: 24 }, "-=0.2");
+            .to(
+              ".mock-float .drawn",
+              { drawSVG: "0% 100%", duration: reduceMotion ? 0 : 0.5, stagger: reduceMotion ? 0 : 0.15 },
+              "<+=0.1",
+            );
 
           return () => split.revert();
         },
@@ -71,82 +111,89 @@ export default function Hero() {
   return (
     <>
       <a id="top" />
-      <div className="hero-wrap" ref={heroRef}>
-        <div className="wrap hero-top">
-          <span className="hero-eyebrow">★★★★★ LOCAL-FIRST · YOUR EMAIL NEVER LEAVES YOUR MACHINE</span>
-          <h1>Turn email exports into</h1>
-          <h1 className="accent">court-ready exhibits.</h1>
-
-          <div className="exhibit-badge">
-            <div>
-              <div className="label">Exhibit</div>
-              <div className="id">EX-0001</div>
-              <div className="case">SMITH v. ALDERCREST</div>
+      <section className="hero glow" ref={heroRef}>
+        <div className="wrap hero-grid">
+          <div>
+            <div className="hero-eyebrow">
+              <span className="stars">★★★★★</span>
+              Local-first · your email never leaves your machine
             </div>
+            <h1>
+              Turn email exports into <span className="accent">court-ready exhibits.</span>
+            </h1>
+            <p className="hero-lead">
+              Import <code>.eml</code> and <code>.mbox</code> files and the app reconstructs
+              threads, removes duplicates, and sorts everything chronologically, then you tag
+              messages and export a labeled index plus a bookmarked PDF bundle.
+            </p>
+            <div className="hero-cta">
+              <a className="btn-solid" href={downloadHref}>
+                {downloadLabel}
+              </a>
+              <a className="btn-outline" href="#pricing">
+                Buy a license ($49)
+              </a>
+            </div>
+            <p className="hero-note">Free trial · one-time license · works offline</p>
           </div>
 
-          <p className="hero-lead">
-            Import <code>.eml</code> and <code>.mbox</code> files and the app reconstructs
-            threads, removes duplicates, and sorts everything chronologically, then you tag
-            messages and export a labeled index plus a bookmarked PDF bundle.
-          </p>
-          <div className="hero-cta">
-            <a className="btn-ink" href={downloadHref}>
-              {downloadLabel}
-            </a>
-            <a className="btn-out" href="#pricing">
-              Buy a license ($49)
-            </a>
+          <div className="mock">
+            <div className="mock-panel">
+              <div className="mock-summary">
+                <div className="row1">
+                  <span>Exhibit bundle</span>
+                  <span>PDF</span>
+                </div>
+                <div className="num">EX-0001 — EX-0126</div>
+                <div className="row2">
+                  <span>
+                    <span className="count-exhibits">0</span> exhibits ·{" "}
+                    <span className="count-messages">0</span> messages
+                  </span>
+                  <span>indexed ✓</span>
+                </div>
+              </div>
+              <div className="mock-head">
+                <span className="t">Chronological index</span>
+                <span className="mock-tag">Legal</span>
+              </div>
+              <div className="mock-row active">
+                <span className="mock-ref">EX-0001</span>
+                <span className="mock-tag">Evidence</span>
+                <div className="mock-bar" style={{ width: "80%" }} />
+              </div>
+              <div className="mock-row">
+                <span className="mock-ref">EX-0002</span>
+                <div className="mock-bar" style={{ width: "60%" }} />
+              </div>
+              <div className="mock-row">
+                <span className="mock-ref">EX-0003</span>
+                <div className="mock-bar" style={{ width: "72%" }} />
+              </div>
+            </div>
+            <div className="mock-float" style={{ left: -18, top: 26 }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline className="drawn" points="4 12 9 17 20 6" />
+              </svg>
+              duplicates merged
+            </div>
+            <div className="mock-float" style={{ right: -14, bottom: -16 }}>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--green)"
+                strokeWidth="2"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path className="drawn" d="M12 7v5l3 2" />
+              </svg>
+              timezone-correct order
+            </div>
           </div>
         </div>
-
-        <div className="fact-strip">
-          <div className="fact">
-            <span className="jb k">TRIAL</span>
-            <div className="v">Free, no account</div>
-          </div>
-          <div className="fact">
-            <span className="jb k">LICENSE</span>
-            <div className="v">$49 once, offline with grace period</div>
-          </div>
-          <div className="fact">
-            <span className="jb k">NETWORK</span>
-            <div className="v">License key only, never message content</div>
-          </div>
-        </div>
-
-        <div className="wrap case-panel-wrap">
-          <div className="case-panel">
-            <div className="case-panel-head">
-              <span className="jb count">1,284 MESSAGES · 3 MAILBOXES · 126 EXHIBITS</span>
-              <span className="jb device">ON DEVICE</span>
-            </div>
-            <div className="case-row">
-              <span className="ref">EX-0001</span>
-              <span className="subject">Re: Lease amendment (signed copy)</span>
-              <span className="tag tag-legal">LEGAL</span>
-              <span className="tag tag-outline">CONTRACT</span>
-              <span className="case-meta">4 msgs · 2 att · threaded by References</span>
-              <span className="date">2024-03-11 09:42 PT</span>
-            </div>
-            <div className="case-row">
-              <span className="ref">EX-0002</span>
-              <span className="subject">Invoice dispute, March–June</span>
-              <span className="tag tag-business">BUSINESS</span>
-              <span className="tag tag-outline">BILLING</span>
-              <span className="case-meta">11 msgs · 3 duplicates removed</span>
-              <span className="date">2024-06-02 17:08 PT</span>
-            </div>
-            <div className="case-row dim">
-              <span className="ref">EX-0003</span>
-              <span className="subject">Site visit photographs</span>
-              <span className="tag tag-untagged">UNTAGGED</span>
-              <span className="case-meta">1 msg · 6 att</span>
-              <span className="date">2024-06-14 08:20 PT</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      </section>
     </>
   );
 }
