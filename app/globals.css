@@ -855,3 +855,52 @@ footer {
 .foot a:hover {
   color: var(--green);
 }
+
+/* Legal pages (/terms, /privacy, /refund) */
+.legal {
+  max-width: 820px;
+  padding-top: 120px;
+  padding-bottom: 80px;
+}
+.legal h1 {
+  font-size: clamp(32px, 5vw, 48px);
+}
+.legal .legal-updated {
+  color: var(--muted-2);
+  font-size: 13px;
+  margin: 12px 0 40px;
+}
+.legal h2 {
+  font-size: 24px;
+  margin: 40px 0 12px;
+}
+.legal h3 {
+  font-size: 18px;
+  margin: 28px 0 8px;
+}
+.legal p,
+.legal li {
+  color: var(--muted);
+  line-height: 1.7;
+}
+.legal ul {
+  padding-left: 22px;
+  margin: 12px 0;
+}
+.legal li {
+  margin: 6px 0;
+}
+.legal a {
+  color: var(--green);
+}
+.legal a:hover {
+  text-decoration: underline;
+}
+.legal .legal-note {
+  margin-top: 56px;
+  padding: 16px 20px;
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--muted-2);
+}

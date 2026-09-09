@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -13,8 +14,11 @@ export default function Footer() {
         <span>
           © {year} · Local-first software
         </span>
-        <a href="#downloads">Download</a>
-        <a href="#pricing">Pricing</a>
+        <Link href="/#downloads">Download</Link>
+        <Link href="/#pricing">Pricing</Link>
+        <Link href="/terms">Terms</Link>
+        <Link href="/privacy">Privacy</Link>
+        <Link href="/refund">Refunds</Link>
       </div>
     </footer>
   );

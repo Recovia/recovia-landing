@@ -1,6 +1,6 @@
 "use client";
 
-import { BUY_URL } from "@/lib/config";
+import { openCheckout } from "@/lib/paddle";
 import { useScrollReveal } from "@/lib/useScrollReveal";
 
 const PERKS = [
@@ -39,9 +39,14 @@ export default function Pricing() {
               </li>
             ))}
           </ul>
-          <a className="btn-solid" href={BUY_URL} style={{ width: "100%" }}>
+          <button
+            type="button"
+            className="btn-solid"
+            onClick={openCheckout}
+            style={{ width: "100%" }}
+          >
             Buy a license
-          </a>
+          </button>
           <p style={{ fontSize: 13, color: "var(--muted)", margin: "14px 0 0" }}>
             or <a href="#downloads">download the free trial</a> first
           </p>

@@ -11,31 +11,31 @@ export default function Nav() {
   return (
     <header className="nav">
       <div className="wrap nav-inner">
-        <Link className="brand" href="#top">
+        <Link className="brand" href="/">
           <Image src="/logo.png" alt="Recovia" width={28} height={28} className="brand-mark" />
           <span className="brand-name">Recovia</span>
         </Link>
         <nav className="nav-links">
-          <Link className="navlink" href="#features">
+          <Link className="navlink" href="/#features">
             Features
           </Link>
-          <Link className="navlink" href="#how">
+          <Link className="navlink" href="/#how">
             How it works
           </Link>
-          <Link className="navlink" href="#downloads">
+          <Link className="navlink" href="/#downloads">
             Downloads
           </Link>
-          <Link className="navlink" href="#pricing">
+          <Link className="navlink" href="/#pricing">
             Pricing
           </Link>
-          <Link className="navlink" href="#faq">
+          <Link className="navlink" href="/#faq">
             FAQ
           </Link>
         </nav>
         <button type="button" className="theme-toggle" onClick={toggleTheme}>
           {theme === "dark" ? "LIGHT MODE" : "DARK MODE"}
         </button>
-        <Link className="btn-solid" href="#downloads">
+        <Link className="btn-solid" href="/#downloads">
           Download {VERSION}
         </Link>
       </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import { ThemeProvider } from "@/lib/theme";
+import PaddleScript from "@/components/PaddleScript";
 import "./globals.css";
 
 const inter = Inter({
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {THEME_INIT_SCRIPT}
         </Script>
         <ThemeProvider>{children}</ThemeProvider>
+        <PaddleScript />
       </body>
     </html>
   );

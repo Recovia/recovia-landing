@@ -7,7 +7,7 @@ import { useScrollReveal } from "@/lib/useScrollReveal";
 const FAQS = [
   {
     q: "Does my email ever get uploaded anywhere?",
-    a: "No. All parsing, threading, tagging, and export happen locally on your computer. The app makes no cloud calls and sends no telemetry about your content. The only network request is a license check to the payment provider, which sends your license key, never your email.",
+    a: "No. All parsing, threading, tagging, and export happen locally on your computer. The app makes no cloud calls and sends no telemetry about your content. The only network request is a license check to our license server, which sends your license key, never your email.",
   },
   {
     q: "What files can I import?",

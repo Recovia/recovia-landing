@@ -3,7 +3,16 @@ export const RELEASE_DATE = "2026-07-28";
 export const RELEASE_BASE =
   "https://github.com/YOUR_ORG/recovia/releases/latest/download";
 export const REPO_URL = "https://github.com/YOUR_ORG/recovia";
-export const BUY_URL = "https://YOUR_STORE.lemonsqueezy.com/checkout";
+
+// Paddle.js overlay checkout. These values are public (client-side) by design.
+// Override per-environment with NEXT_PUBLIC_* env vars; placeholders let the
+// site build without a live Paddle account.
+export const PADDLE_ENV =
+  (process.env.NEXT_PUBLIC_PADDLE_ENV as "sandbox" | "production") ?? "sandbox";
+export const PADDLE_CLIENT_TOKEN =
+  process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN ?? "test_REPLACE_WITH_CLIENT_TOKEN";
+export const PADDLE_PRICE_ID =
+  process.env.NEXT_PUBLIC_PADDLE_PRICE_ID ?? "pri_REPLACE_WITH_PRICE_ID";
 
 export type OsKey = "windows" | "macos" | "linux";
 
